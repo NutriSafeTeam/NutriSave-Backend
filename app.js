@@ -6,6 +6,7 @@ import './src/database';
 
 import express from 'express';
 import homeRoutes from './src/routes/HomeRoutes.js';
+import loginRoutes from './src/routes/LoginRoutes.js';
 import usuarioRoutes from './src/routes/UsuarioRoutes.js';
 
 
@@ -25,6 +26,7 @@ class App {
     routes() {
         this.app.use('/', homeRoutes);
         this.app.use('/usuarios/', usuarioRoutes);
+        this.app.use('/login/', loginRoutes);
     }
 }
 

@@ -1,6 +1,6 @@
 import Sequelize, { Model } from 'sequelize';
 import bcryptjs from 'bcryptjs';
-import { username } from '../config/database';
+import { password, username } from '../config/database';
 
 export default class Usuario extends Model {
     static init(sequelize) {
@@ -53,5 +53,9 @@ export default class Usuario extends Model {
         });
 
         return this;
+    }
+
+    senhaIsValid(senha) {
+        return bcryptjs.compare(senha, this.senha_hash);
     }
 }
