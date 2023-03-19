@@ -1,0 +1,39 @@
+version: '3'
+
+networks:
+  utfx_network:
+    driver: bridge  
+    ipam:
+      config:
+        - subnet: 172.24.0.0/24
+          gateway: 172.24.0.1
+
+services:
+
+#docker-compose -f docker-compose-utfx.yml up utfx_postgres_local
+  utfx_postgres_local:
+    container_name: postgres-utfx-local
+    image: postgres:12.2-alpine
+    ports:
+      - 5234:5234
+    networks:
+      utfx_network:
+        ipv4_address: 172.24.0.100
+    environment:
+      - POSTGRES_DB=utfx
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123@mudar
+
+  #docker-compose -f docker-compose-utfx.yml up utfx_pgadmin
+  utfx_pgadmin:
+    image: dpage/pgadmin4
+    container_name: utfx-pgadmin
+    ports:
+      - 15234:80
+    networks:
+      - utfx_network
+    environment:
+      - PGADMIN_DEFAULT_PASSWORD=p0stgr3s
+      - PGADMIN_DEFAULT_EMAIL=postgres@postgres.com
+    depends_on:
+      - utfx_postgres_local
