@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 import Usuario from '../models/Usuario';
 
 class LoginController {
-    async create(req, res) {
+    async send(req, res) {
         const { email = '', senha = ''} = req.body;
 
         if(!email || !senha) {

@@ -1,15 +1,15 @@
 import jwt from 'jsonwebtoken';
 
 export default (req, res, next) => {
-    const { authorization } = req.headers;
+    const { Authorization } = req.headers;
     
-    if(!authorization) {
+    if(!Authorization) {
         return res.status(401).json({
             errors: ['unauthorized'],
         });
     }
 
-    const [, token ] = authorization.split(' ');
+    const [, token ] = Authorization.split(' ');
 
     try {
         const dados = jwt.verify(token, process.env.TOKEN_SECRET);
@@ -18,7 +18,7 @@ export default (req, res, next) => {
         req.userEmail = email;
         return next();
     } catch (e) {
-        if(!authorization) {
+        if(!Authorization) {
             return res.status(401).json({
                 errors: ['unauthorized'],
             });
