@@ -27,7 +27,7 @@ class App {
             res.header('Vary', 'Access-Control-Request-Method');
             res.header('Vary', 'Access-Control-Request-Headers');
             res.header('Access-Control-Expose-Headers', 'Authorization');
-            res.header('Access-Control-Allow-Headers', 'Content-Type, X-Custom-Header');
+            res.header('Access-Control-Allow-Headers', 'Content-Type, X-Custom-Header, Authorization');
             res.header('Access-Control-Allow-Origin', '*');
             res.header('X-XSS-Protection', '1; mode=block');
             res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
