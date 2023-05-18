@@ -8,9 +8,10 @@ class UsuarioController {
             const novoUsuario = await Usuario.create(req.body);
             return res.json(novoUsuario);
         } catch (e) {
-            res.status(400).json('Email já existe - {error.usuario.create.usuario.email-in-use}');
-            res.status(401).json('Não autorizado - {error.usuario.create.usuario.unauthorized}');
-            res.status(500).json('Erro interno - {error.usuario.create.usuario.internal-error}');
+           // res.status(400).json('Email já existe - {error.usuario.create.usuario.email-in-use}');
+           // res.status(401).json('Não autorizado - {error.usuario.create.usuario.unauthorized}');
+           // res.status(500).json('Erro interno - {error.usuario.create.usuario.internal-error}');
+           res.json(e);
         }
     }
 
